@@ -20,8 +20,7 @@ Detalhes: https://github.com/advisories/GHSA-9wv6-86v2-598j
    quebrar o adapter/deploy na Vercel.
 2. O padrão vulnerável (dois parâmetros no mesmo segmento) **não existe**
    nas rotas deste projeto. Todas as rotas dinâmicas usam um único
-   parâmetro por segmento: `/artigos/[slug]`, `/en/articles/[slug]`,
-   `/es/articulos/[slug]`.
+   parâmetro por segmento: `/artigos/[slug]` e `/categorias/[slug]`.
 3. O `path-to-regexp` atua aqui só na geração do `vercel.json` de rotas
    **durante o build** — não processa requisições de usuários em tempo
    real no site publicado.

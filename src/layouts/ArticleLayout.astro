@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import AdSlot from "../components/AdSlot.astro";
 import ArticleCTA from "../components/ArticleCTA.astro";
 import RelatedArticles from "../components/RelatedArticles.astro";
+import HostingerGuideCTA from "../components/HostingerGuideCTA.astro";
 import { categoryHref } from "../lib/categories";
 
 interface Props {
@@ -19,8 +20,9 @@ interface Props {
   ctaUrl?: string;
   ctaText?: string;
   ctaButtonLabel: string;
-  ctaType: "isca" | "produto" | "afiliado";
+  ctaType: "afiliado" | "informativo";
   related: { title: string; href: string; category: string }[];
+  slug: string;
 }
 
 const {
@@ -39,6 +41,7 @@ const {
   ctaButtonLabel,
   ctaType,
   related,
+  slug,
 } = Astro.props;
 
 const formattedDate = new Date(`${pubDate}T00:00:00`).toLocaleDateString(
@@ -150,6 +153,7 @@ const formattedUpdated = updatedDate
         type={ctaType}
       />
 
+      <HostingerGuideCTA currentSlug={slug} />
       <RelatedArticles items={related} />
     </article>
   </div>

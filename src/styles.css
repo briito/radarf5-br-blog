@@ -492,7 +492,7 @@ tr:hover {
     min-height: 250px; /* reserva o espaço do anúncio e evita layout shift */
 }
 
-/* CTA de afiliado (Hotmart/Kiwify), repetido no final de cada artigo */
+/* Chamada (CTA) no final do artigo; com aviso de comissão quando o link é de afiliado */
 .cta-box {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);

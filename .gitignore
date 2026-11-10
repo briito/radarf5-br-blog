@@ -1,0 +1,21 @@
+
+# Variáveis de ambiente locais
+.env.local
+
+# Dependências
+node_modules/
+
+# Arquivos gerados pelo Astro
+.astro/
+dist/
+
+# Configurações locais da Vercel
+.vercel/
+
+# Variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log

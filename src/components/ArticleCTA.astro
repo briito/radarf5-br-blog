@@ -1,12 +1,12 @@
 ---
-// Próximo passo no fim do artigo: isca digital, produto próprio ou (quando
-// fizer sentido) link de afiliado. Só renderiza se houver url E texto — sem
-// isso, nenhuma caixa vazia (ou genérica) aparece.
+// Chamada no fim do artigo: link de afiliado (com aviso de comissão e
+// rel="sponsored") ou link informativo, sem comissão. Só renderiza se houver
+// url E texto — sem isso, nenhuma caixa vazia (ou genérica) aparece.
 interface Props {
   url?: string;
   text?: string;
   buttonLabel: string;
-  type: "isca" | "produto" | "afiliado";
+  type: "afiliado" | "informativo";
 }
 
 const { url, text, buttonLabel, type } = Astro.props;

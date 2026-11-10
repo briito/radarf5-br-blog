@@ -21,20 +21,28 @@ const articles = defineCollection({
     category: z.enum(CATEGORY_NAMES),
     image: z.string(),
     imageAlt: z.string().default("Imagem ilustrativa"),
+    // Link de afiliado opcional aplicado à imagem de capa (exibe aviso de comissão).
     imageLink: z.string().url().optional(),
     draft: z.boolean().optional().default(false),
+
+    // Data em que preços, condições e especificações citados foram conferidos
+    // na fonte oficial. Aceito pelo schema, mas AINDA NÃO é exibido no site
+    // (a exibição depende de aprovação). Informe sempre que o artigo citar
+    // dados que mudam com o tempo.
+    verifiedDate: z.coerce.date().optional(),
 
     // Slugs de artigos relacionados (links internos / cluster).
     // Se vazio, o site sugere outros artigos da mesma categoria.
     related: z.array(z.string()).default([]),
 
-    // Próximo passo (CTA) no fim do artigo. Só aparece se ctaUrl E ctaText existirem.
-    // ctaType: "isca" (material gratuito), "produto" (produto próprio) ou
-    // "afiliado" (único tipo que exibe aviso de comissão e rel="sponsored").
+    // Chamada (CTA) no fim do artigo. Só aparece se ctaUrl E ctaText existirem.
+    // ctaType: "afiliado" (padrão: exibe aviso de comissão e usa rel="sponsored")
+    // ou "informativo" (link sem comissão, como página oficial ou outro
+    // conteúdo: sem aviso, rel="noopener").
     ctaUrl: z.string().url().optional(),
     ctaText: z.string().optional(),
     ctaButtonLabel: z.string().optional().default("Acessar"),
-    ctaType: z.enum(["isca", "produto", "afiliado"]).default("isca"),
+    ctaType: z.enum(["afiliado", "informativo"]).default("afiliado"),
   }),
 });
 

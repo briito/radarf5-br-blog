@@ -1,0 +1,11 @@
+---
+import { getCollection } from "astro:content";
+const guide = (await getCollection("articles", ({ data }) => !data.draft && data.slug === "como-criar-site-blog-hostinger"))[0];
+const { currentSlug } = Astro.props;
+---
+{guide && currentSlug !== guide.data.slug && (
+  <aside class="cta-box" aria-label="Guia para criar um site ou blog">
+    <p class="cta-box__text">Pensando em criar seu próprio site ou blog? Conheça nosso guia sobre como começar, escolher uma hospedagem e avaliar as opções da Hostinger.</p>
+    <a class="btn-cta" href="/artigos/como-criar-site-blog-hostinger/">Conhecer o guia</a>
+  </aside>
+)}

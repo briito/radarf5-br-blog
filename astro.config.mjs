@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://radarf5.com',
+  site: 'https://blog.radarf5.com.br',
   output: 'server',
   adapter: vercel(),
   integrations: [sitemap()],
