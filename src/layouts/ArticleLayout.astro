@@ -12,6 +12,7 @@ interface Props {
   author: string;
   pubDate: string;
   updatedDate?: string;
+  verifiedDate?: string;
   category: string;
   image: string;
   imageAlt: string;
@@ -31,6 +32,7 @@ const {
   author,
   pubDate,
   updatedDate,
+  verifiedDate,
   category,
   image,
   imageAlt,
@@ -60,15 +62,23 @@ const formattedUpdated = updatedDate
       year: "numeric",
     })
   : undefined;
+
+const formattedVerified = verifiedDate
+  ? new Date(`${verifiedDate}T00:00:00`).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })
+  : undefined;
 ---
 
 <BaseLayout
-  title={`${title} - Radar F5`}
+  title={`${title} - Radar F5 BR`}
   description={description}
   image={image}
   type="article"
 >
-  <header class="site-header">
+  <div class="site-header">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
@@ -107,15 +117,34 @@ const formattedUpdated = updatedDate
           )
         }
 
+        {
+          formattedVerified && (
+            <>
+              <span>|</span>
+              <span class="verified-date">
+                Verificado em <time datetime={verifiedDate}>{formattedVerified}</time>
+              </span>
+            </>
+          )
+        }
+
         <span>|</span>
 
         <span id="reading-time">{readingTime} min de leitura</span>
       </div>
     </div>
-  </header>
+  </div>
 
   <div class="container">
     <article class="main-article">
+      <aside class="affiliate-notice" aria-label="Aviso sobre links de afiliados">
+        <p>
+          Este artigo pode conter links de afiliados. Se você comprar por eles,
+          podemos receber uma comissão, sem custo extra para você.
+          <a href="/sobre-nos/">Saiba mais</a>.
+        </p>
+      </aside>
+
       <picture class="featured-image">
         {
           imageLink ? (

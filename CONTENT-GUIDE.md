@@ -43,9 +43,9 @@ Observações:
   `slug-1200x675.jpg` na mesma pasta. O `BaseLayout` usa o `.jpg` em
   `og:image` (Facebook e WhatsApp lidam mal com WebP). Sem o `.jpg`, a prévia
   fica sem imagem.
-- **`verifiedDate`:** o schema já aceita o campo, mas o site **ainda não o
-  exibe**. A exibição depende de aprovação. Preencha-o desde já nos artigos
-  que citam dados que mudam (preço, plano, disponibilidade, especificação).
+- **`verifiedDate`:** quando preenchido, o artigo exibe "Verificado em <data>"
+  na linha de informações. Preencha-o nos artigos que citam dados que mudam
+  (preço, plano, disponibilidade, especificação).
 - **`draft: true`:** o artigo não gera página, não aparece em listagens nem no
   sitemap.
 
@@ -85,6 +85,6 @@ Em comparativos, deixe os critérios da comparação explícitos.
 - Distingue fato, especificação, avaliação de terceiros e experiência prática?
 - Apresenta limitações e alternativas, não só vantagens?
 - Os vínculos comerciais estão identificados e os links de afiliado usam
-  `rel="sponsored"`?
+  `rel="sponsored"` (aplicado automaticamente aos links externos do texto)?
 - Tem `description`, `imageAlt`, capa `.webp` + `.jpg` e links internos (`related`)?
 - `draft` está como deseja e o build local passa (`npm run build`)?

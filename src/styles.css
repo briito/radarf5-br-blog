@@ -214,6 +214,20 @@ img {
     text-align: center;
 }
 
+.affiliate-notice {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 10px 14px;
+    margin: 0 0 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.affiliate-notice p {
+    margin: 0;
+}
+
 .inline-offer-image {
     display: block;
     max-width: 420px;

@@ -50,6 +50,8 @@ O campo opcional `imageLink` transforma a capa em link de afiliado
 
 ## Links de afiliado dentro do texto
 
-Links colocados no corpo do artigo (Markdown) **não recebem `rel` automático**.
-Ao inserir um link de afiliado no texto, use HTML com
-`rel="sponsored noopener"` até existir uma solução automatizada (pendência).
+Todos os links **externos** colocados no corpo do artigo (Markdown) recebem
+`rel="sponsored noopener"` automaticamente (plugin `src/lib/rehype-external-links.mjs`,
+configurado em `astro.config.mjs`). Links internos não são alterados.
+
+Todo artigo exibe, no início, um aviso geral sobre links de afiliados.
