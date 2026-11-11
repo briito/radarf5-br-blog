@@ -1,11 +1,22 @@
 ---
+export const prerender = true;
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import CategoryNav from "../components/CategoryNav.astro";
+import { jsonLd, SITE_NAME } from "../lib/json-ld";
 const articles = (await getCollection("articles", ({ data }) => !data.draft)).sort((a,b) => b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+const siteUrl = Astro.site!.href;
+const homeLd = jsonLd({
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": `${siteUrl}#organization`, name: SITE_NAME, url: siteUrl },
+    { "@type": "WebSite", "@id": `${siteUrl}#website`, name: SITE_NAME, url: siteUrl, inLanguage: "pt-BR", publisher: { "@id": `${siteUrl}#organization` } },
+  ],
+});
 ---
 <BaseLayout title="Radar F5 BR — Reviews, Comparativos e Recomendações" description="Análises e comparações de produtos físicos e digitais para ajudar você a escolher com mais segurança e informação.">
+  <script slot="head" type="application/ld+json" set:html={homeLd} />
   <section class="container hero-section"><div class="callout-box">
     <h1>Reviews, comparativos e recomendações para comprar melhor</h1>
     <p>Bem-vindo(a) ao <strong>Radar F5 BR</strong>.</p>

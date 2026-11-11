@@ -76,5 +76,6 @@ marcas de terceiros, afiliados e cursos sem garantia de renda.
 
 **Pendências:** revisão por profissional jurídico antes da publicação;
 identificação do responsável (nome ou CNPJ), se desejada; confirmar Vercel e
-Resend em produção; remetente do formulário ainda usa `contato@radarf5.com`
-(domínio de outro projeto); rodapé e `og:site_name` ainda dizem "Radar F5".
+Resend em produção. (Atualizado em 10/11/2026: remetente do formulário é
+`contato@blog.radarf5.com.br`, o destinatário é `contato@radarf5.com.br`, e rodapé,
+títulos e `og:site_name` usam "Radar F5 BR".)
