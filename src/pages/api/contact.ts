@@ -3,7 +3,17 @@ import { Resend } from "resend";
 
 export const prerender = false;
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// Limites dos campos (evitam mensagens abusivas e assuntos de e-mail gigantes).
+const MAX_NOME = 100;
+const MAX_EMAIL = 254;
+const MAX_MENSAGEM = 5000;
+
+function json(body: Record<string, unknown>, status: number) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
 
 // Rate limiting simples em memória (por IP). Suficiente para coibir bots
 // básicos, mas não é garantido em ambientes serverless com múltiplas
@@ -71,6 +81,17 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
+    // A chave é lida aqui (e não na importação do módulo) para que a ausência
+    // da variável na Vercel gere uma resposta de erro clara, e não uma falha.
+    const apiKey = import.meta.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("RESEND_API_KEY não configurada.");
+      return json(
+        { success: false, message: "O envio de mensagens está temporariamente indisponível." },
+        503
+      );
+    }
+
     const nome = formData.get("nome")?.toString().trim();
     const email = formData.get("email")?.toString().trim();
     const mensagem = formData.get("mensagem")?.toString().trim();
@@ -105,11 +126,25 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
+    if (nome.length > MAX_NOME || email.length > MAX_EMAIL || mensagem.length > MAX_MENSAGEM) {
+      return json(
+        {
+          success: false,
+          message: `Verifique o tamanho dos campos (nome até ${MAX_NOME}, mensagem até ${MAX_MENSAGEM} caracteres).`,
+        },
+        400
+      );
+    }
+
+    // Remove quebras de linha do nome antes de usá-lo no assunto do e-mail.
+    const nomeSeguro = nome.replace(/[\r\n]+/g, " ");
+    const resend = new Resend(apiKey);
+
     const { error } = await resend.emails.send({
       from: "Radar F5 BR <contato@blog.radarf5.com.br>",
       to: ["contato@radarf5.com.br"],
       replyTo: email,
-      subject: `Nova mensagem de contato - ${nome}`,
+      subject: `Nova mensagem de contato - ${nomeSeguro}`,
       text: `Nome: ${nome}\nE-mail: ${email}\n\nMensagem:\n${mensagem}`,
     });
 

@@ -1,4 +1,4 @@
-# Guia de conteúdo — Blog Radar F5 BR
+# Guia de conteúdo — Radar F5 BR
 
 Blog brasileiro de **reviews, comparativos e recomendações** de produtos
 físicos e digitais (marketplaces, softwares, ferramentas, serviços e cursos).
@@ -42,7 +42,14 @@ Observações:
 - **Prévia social:** para cada capa `slug-1200x675.webp` crie também
   `slug-1200x675.jpg` na mesma pasta. O `BaseLayout` usa o `.jpg` em
   `og:image` (Facebook e WhatsApp lidam mal com WebP). Sem o `.jpg`, a prévia
-  fica sem imagem.
+  fica sem imagem. O `npm run build` executa antes `scripts/check-covers.mjs`,
+  que **interrompe o build** se um artigo publicado (`draft: false`) não tiver
+  a capa `.webp` ou `.jpg` em `public/`. O script não confere as dimensões
+  (1200x675): confira manualmente.
+- **Links externos no texto:** recebem `rel="sponsored noopener"`
+  automaticamente. Fontes oficiais e de referência sem comissão podem ficar só
+  com `noopener`: inclua o domínio em `nonCommercialHosts` no
+  `astro.config.mjs` (hoje: `gov.br`, `wikipedia.org`; subdomínios incluídos).
 - **`verifiedDate`:** quando preenchido, o artigo exibe "Verificado em <data>"
   na linha de informações. Preencha-o nos artigos que citam dados que mudam
   (preço, plano, disponibilidade, especificação).
@@ -87,4 +94,6 @@ Em comparativos, deixe os critérios da comparação explícitos.
 - Os vínculos comerciais estão identificados e os links de afiliado usam
   `rel="sponsored"` (aplicado automaticamente aos links externos do texto)?
 - Tem `description`, `imageAlt`, capa `.webp` + `.jpg` e links internos (`related`)?
+- Os termos vigentes do programa de afiliados (links, preços e imagens da
+  plataforma) foram conferidos?
 - `draft` está como deseja e o build local passa (`npm run build`)?

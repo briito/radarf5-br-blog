@@ -2,6 +2,7 @@
 export const prerender = true;
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { CATEGORIES } from "../lib/categories";
+import { COMPANY } from "../lib/company";
 ---
 <BaseLayout title="Sobre nós — Radar F5 BR" description="Conheça a proposta editorial do Radar F5 BR e nossa política de transparência em recomendações e links de afiliados.">
 <div class="container" style="margin-top: 30px;"><article>
@@ -10,6 +11,7 @@ import { CATEGORIES } from "../lib/categories";
 <h2>O que publicamos</h2><p>Organizamos nossos conteúdos em três categorias:</p>
 <ul>{CATEGORIES.map((category) => <li><a href={`/categorias/${category.slug}/`}>{category.name}</a>: {category.description}</li>)}</ul>
 <h2>Como produzimos as análises</h2><p>Priorizamos fontes verificáveis, características, benefícios, limitações e adequação a diferentes perfis. Não afirmamos ter testado um produto sem realizar um teste. Quando uma análise é documental, deixamos isso claro.</p>
-<h2>Transparência sobre afiliados</h2><p>Alguns links podem ser de afiliados. Se uma compra qualificada ocorrer, podemos receber comissão. Isso não altera nosso compromisso de apresentar vantagens, desvantagens e alternativas relevantes. Preços e condições devem ser conferidos no fornecedor.</p>
+<h2 id="transparencia-afiliados">Transparência sobre afiliados</h2><p>Alguns links podem ser de afiliados. Se uma compra qualificada ocorrer, podemos receber comissão. Isso não altera nosso compromisso de apresentar vantagens, desvantagens e alternativas relevantes. Preços e condições devem ser conferidos no fornecedor.</p>
+<h2>Quem opera o site</h2><p>O Radar F5 BR é operado por {COMPANY.legalName}, inscrita no CNPJ sob o nº {COMPANY.cnpj}.</p>
 <h2>Correções e contato</h2><p>Encontrou informação desatualizada ou quer sugerir um tema? <a href="/contato/">Fale conosco</a>.</p>
 </article></div></BaseLayout>

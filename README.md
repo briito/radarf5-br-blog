@@ -1,4 +1,4 @@
-# Blog Radar F5 BR
+# Radar F5 BR
 
 Blog brasileiro de reviews, comparativos e recomendações de produtos físicos
 e digitais, com monetização transparente por marketing de afiliados.
@@ -12,7 +12,7 @@ e digitais, com monetização transparente por marketing de afiliados.
 ```
 npm install       # instala dependências
 npm run dev       # servidor local
-npm run build     # compila o site
+npm run build     # confere as capas (check:covers) e compila o site
 npm run preview   # pré-visualiza a compilação
 ```
 
@@ -20,12 +20,15 @@ npm run preview   # pré-visualiza a compilação
 
 - `src/content/articles/` — artigos em Markdown (frontmatter em `src/content.config.ts`).
 - `src/lib/categories.ts` — categorias oficiais: Reviews, Comparativos, Recomendações.
+- `src/lib/company.ts` — identificação da empresa exibida no rodapé e nas páginas institucionais e legais.
+- `scripts/check-covers.mjs` — confere as capas dos artigos publicados antes do build.
 - `src/pages/` — páginas, listagens, categorias, institucionais e `api/contact.ts`.
 - `src/components/` e `src/layouts/` — componentes e layouts.
 - `public/` — favicon, `robots.txt` e `images/` (capas dos artigos).
 
 ## Variáveis de ambiente
 
+- Modelo em `.env.example` (sem valores reais). Configure as mesmas variáveis na Vercel.
 - `RESEND_API_KEY` — envio do formulário de contato.
 - `ADS_ENABLED`, `ADSENSE_CLIENT_ID`, `ADSENSE_SLOT_TOP` — AdSense (ver `ADS-SETUP.md`).
 

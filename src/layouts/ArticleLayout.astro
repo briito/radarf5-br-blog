@@ -5,7 +5,7 @@ import ArticleCTA from "../components/ArticleCTA.astro";
 import RelatedArticles from "../components/RelatedArticles.astro";
 import HostingerGuideCTA from "../components/HostingerGuideCTA.astro";
 import { categoryHref } from "../lib/categories";
-import { jsonLd, SITE_NAME } from "../lib/json-ld";
+import { jsonLd, SITE_NAME, ORGANIZATION_AUTHORS } from "../lib/json-ld";
 
 interface Props {
   title: string;
@@ -89,7 +89,7 @@ const articleLd = jsonLd({
   inLanguage: "pt-BR",
   mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
   author:
-    author === SITE_NAME
+    ORGANIZATION_AUTHORS.includes(author)
       ? publisher
       : { "@type": "Person", name: author },
   publisher,
@@ -178,7 +178,7 @@ const breadcrumbLd = jsonLd({
         <p>
           Este artigo pode conter links de afiliados. Se você comprar por eles,
           podemos receber uma comissão, sem custo extra para você.
-          <a href="/sobre-nos/">Saiba mais</a>.
+          <a href="/sobre-nos/#transparencia-afiliados">Saiba mais</a>.
         </p>
       </aside>
 

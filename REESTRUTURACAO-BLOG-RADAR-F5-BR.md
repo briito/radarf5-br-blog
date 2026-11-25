@@ -1,4 +1,6 @@
-# Reestruturação — Blog Radar F5 BR
+# Reestruturação — Radar F5 BR
+
+> Histórico. As seções com numeração de "Etapa" abaixo vêm de uma fase anterior do projeto e são mantidas apenas como registro. O estado atual do código está descrito nos demais documentos e na seção final.
 
 - Domínio canônico e sitemap: https://blog.radarf5.com.br
 - Categorias: Reviews, Comparativos e Recomendações.
@@ -79,3 +81,52 @@ identificação do responsável (nome ou CNPJ), se desejada; confirmar Vercel e
 Resend em produção. (Atualizado em 10/11/2026: remetente do formulário é
 `contato@blog.radarf5.com.br`, o destinatário é `contato@radarf5.com.br`, e rodapé,
 títulos e `og:site_name` usam "Radar F5 BR".)
+
+---
+
+## Atualização — 25/11/2026 (Claude)
+
+Autorizada pelo proprietário. Build **não** executado pelo Claude (ambiente sem
+rede); `npm install` e `npm run build` ficam com o proprietário, no VS Code.
+Testados pelo Claude, isoladamente: `scripts/check-covers.mjs` (aprova com
+apenas rascunhos; falha com artigo publicado sem capa) e o plugin
+`rehype-external-links.mjs` (comportamento dos links).
+
+**Situação confirmada no código**
+
+- Aviso de afiliado no início do artigo, `rel="sponsored"` automático em links
+  do texto, exibição de "Verificado em" (`verifiedDate`) e dados estruturados
+  (`Article`, `BreadcrumbList`, `Organization`, `WebSite`) já estavam
+  implementados. Os comentários que diziam o contrário foram corrigidos.
+- `.gitignore` existe neste ZIP. Se `dist` e `node_modules` ainda estão
+  rastreados no repositório do proprietário, só é possível confirmar no
+  repositório original (`git ls-files`).
+
+**Alterações**
+
+- Identificação da empresa (`src/lib/company.ts`): rodapé, Sobre nós, Política
+  de Privacidade e Termos de Uso. Endereço não exibido, por decisão do
+  proprietário. Datas das páginas legais atualizadas para 25/11/2026.
+- Nome padronizado como "Radar F5 BR" nas páginas legais e nos documentos;
+  corrigido o erro "Radar F5 BR BR" na Política de Privacidade.
+- Plugin de links: todo link externo continua `sponsored noopener`, exceto
+  domínios da lista `nonCommercialHosts` (`astro.config.mjs`), que recebem só
+  `noopener`.
+- Formulário de contato: ausência de `RESEND_API_KEY` gera resposta de erro
+  clara (503); limites de tamanho nos campos (servidor e formulário); quebras de
+  linha removidas do nome usado no assunto do e-mail.
+- Dados estruturados: autor "Redação Radar F5" passa a ser `Organization`.
+- Âncora `#transparencia-afiliados` em Sobre nós, usada pelo aviso de afiliados.
+- `.env.example` criado.
+- `scripts/check-covers.mjs`, executado antes do build (`prebuild`).
+- Documentação atualizada: `README.md`, `CONTENT-GUIDE.md`.
+
+**Pendências**
+
+- Revisão jurídica da Política de Privacidade e dos Termos de Uso.
+- Confirmar o e-mail de privacidade exibido (`contato@radarf5.com.br`).
+- Termos e Política citam Shopee, Mercado Livre, TikTok Shop e Amazon; avaliar
+  citar também Hotmart e Kiwify, já previstos no objetivo do projeto.
+- Artigo pilar Hostinger (criação e hospedagem de sites): pesquisa, planos,
+  capa `.webp` e `.jpg` e link de afiliado.
+- Validação do build pelo proprietário.

@@ -5,3 +5,7 @@ export function jsonLd(data: Record<string, unknown>): string {
 }
 
 export const SITE_NAME = "Radar F5 BR";
+
+// Autores que representam a própria redação (declarados como Organization,
+// não como Person, nos dados estruturados). Inclui o autor padrão do schema.
+export const ORGANIZATION_AUTHORS: string[] = [SITE_NAME, "Redação Radar F5"];

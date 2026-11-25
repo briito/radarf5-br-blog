@@ -10,7 +10,12 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [sitemap()],
   markdown: {
-    // Links externos no corpo dos artigos recebem rel="sponsored noopener".
-    rehypePlugins: [[rehypeExternalLinks, { siteHost: 'blog.radarf5.com.br' }]],
+    // Links externos no corpo dos artigos recebem rel="sponsored noopener",
+    // exceto os de fontes não comerciais listadas abaixo (apenas "noopener").
+    // Para citar uma fonte oficial sem rótulo de patrocinado, inclua o domínio.
+    rehypePlugins: [[rehypeExternalLinks, {
+      siteHost: 'blog.radarf5.com.br',
+      nonCommercialHosts: ['gov.br', 'wikipedia.org'],
+    }]],
   },
 });

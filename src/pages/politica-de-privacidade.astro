@@ -1,26 +1,33 @@
 ---
 export const prerender = true;
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { COMPANY } from "../lib/company";
 ---
 
 <BaseLayout
   title="Política de Privacidade — Radar F5 BR"
-  description="Política de privacidade do Blog Radar F5 BR. Saiba como seus dados pessoais podem ser coletados, utilizados e protegidos de acordo com a LGPD."
+  description="Política de privacidade do Radar F5 BR. Saiba como seus dados pessoais podem ser coletados, utilizados e protegidos de acordo com a LGPD."
 >
   <div class="container" style="margin-top: 30px;">
     <article>
       <h1>Política de Privacidade</h1>
 
       <p>
-        <em>Última atualização: 9 de novembro de 2026</em>
+        <em>Última atualização: 25 de novembro de 2026</em>
       </p>
 
       <p>
-        No <strong>Blog Radar F5 BR</strong>, acessível em
+        No <strong>Radar F5 BR</strong>, acessível em
         <a href="https://blog.radarf5.com.br"> https://blog.radarf5.com.br</a>, valorizamos a
         privacidade dos nossos visitantes e buscamos tratar dados pessoais de
         forma transparente, segura e de acordo com as finalidades informadas
         nesta Política de Privacidade.
+      </p>
+
+      <p>
+        O Radar F5 BR é operado por <strong>{COMPANY.legalName}</strong>,
+        inscrita no CNPJ sob o nº {COMPANY.cnpj}, responsável pelo tratamento
+        dos dados pessoais descritos nesta Política.
       </p>
 
       <p>
@@ -399,7 +406,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p>
         Para exercer seus direitos ou esclarecer dúvidas relacionadas ao
         tratamento de dados pessoais pelo Radar F5 BR, o titular pode entrar em
-        contato por meio do endereço:
+        contato por meio dos endereços:
+      </p>
+
+      <p>
+        <strong>E-mail: </strong>
+        <a href={`mailto:${COMPANY.contactEmail}`}>{COMPANY.contactEmail}</a>
       </p>
 
       <p>
@@ -482,8 +494,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <p>
         Em caso de dúvidas, solicitações ou questões relacionadas a esta
-        Política de Privacidade ou ao tratamento de dados pessoais pelo Radar F5 BR
-        BR, entre em contato:
+        Política de Privacidade ou ao tratamento de dados pessoais pelo Radar F5 BR, entre em contato:
+      </p>
+
+      <p>
+        <strong>Responsável pelo tratamento: </strong>
+        {COMPANY.legalName} &mdash; CNPJ {COMPANY.cnpj}
+      </p>
+
+      <p>
+        <strong>E-mail: </strong>
+        <a href={`mailto:${COMPANY.contactEmail}`}>{COMPANY.contactEmail}</a>
       </p>
 
       <p>
@@ -492,7 +513,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
 
       <p>
-        <strong>Última atualização:</strong> 9 de novembro de 2026
+        <strong>Última atualização:</strong> 25 de novembro de 2026
       </p>
     </article>
   </div>

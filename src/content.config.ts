@@ -26,9 +26,8 @@ const articles = defineCollection({
     draft: z.boolean().optional().default(false),
 
     // Data em que preços, condições e especificações citados foram conferidos
-    // na fonte oficial. Aceito pelo schema, mas AINDA NÃO é exibido no site
-    // (a exibição depende de aprovação). Informe sempre que o artigo citar
-    // dados que mudam com o tempo.
+    // na fonte oficial. Exibido no artigo como "Verificado em <data>".
+    // Informe sempre que o artigo citar dados que mudam com o tempo.
     verifiedDate: z.coerce.date().optional(),
 
     // Slugs de artigos relacionados (links internos / cluster).
